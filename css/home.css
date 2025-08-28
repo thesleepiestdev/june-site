@@ -1,0 +1,12 @@
+.welcome-speech {
+ margin: auto;
+ position: relative;
+ text-align: center;
+ width: 688px;
+}
+.welcome-text {
+ position: absolute;
+ top: 10px;
+ left: 260px;
+ font-size: 40px;
+}
