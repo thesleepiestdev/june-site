@@ -1,0 +1,61 @@
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    /* background: radial-gradient(circle, #45484d, #000); */
+    background-color: #000;
+  }
+
+  #dvd {
+    position: absolute;
+    width: 390px;
+    height: 163px;
+    background: url('/resources/dvdscreensaver/june.png') center/contain no-repeat;
+  }
+</style>
+
+<div id="dvd"></div>
+
+<script>
+const dvd = document.getElementById("dvd");
+
+let x = 100, y = 100;
+let dx = 6, dy = 6;
+
+let lastHue = null;
+
+function animate() {
+  const w = window.innerWidth - dvd.offsetWidth;
+  const h = window.innerHeight - dvd.offsetHeight;
+
+  x += dx;
+  y += dy;
+
+  if (x <= 0 || x >= w) {
+    dx *= -1;
+    changeColor();
+  }
+
+  if (y <= 0 || y >= h) {
+    dy *= -1;
+    changeColor();
+  }
+
+  dvd.style.transform = `translate(${x}px, ${y}px)`;
+
+  requestAnimationFrame(animate);
+}
+
+function changeColor() {
+  let hue;
+  do {
+    hue = Math.floor(Math.random() * 360);
+  } while (lastHue !== null && Math.abs(hue - lastHue) < 40);
+
+  lastHue = hue;
+  dvd.style.filter = `hue-rotate(${hue}deg)`;
+}
+
+animate();
+</script>
